@@ -12,11 +12,8 @@ def image(data):
 
     return link
 
-i = 0
 
-for i in range(10): 
-    a = image('river')
-    print(a)
-    i = i + 1
+a = image('river')
+
 
 
