@@ -22,23 +22,27 @@ def image(data):
 
     # content = Soup.find_all("div",attrs={"class": "PKhmud"})
     # for ad_list in content:
-    for ad in Soup.find_all('a'):
-        ad_link = ad['href']
-        ad_basics = ad['aria-label'].split('\n')
-        print(ad_basics)
+    #for ad in Soup.select(".PKhmud"):
+        # ad_link = ad['href']
+        # ad_basics = ad['aria-label']
+        #print(ad)
+
+    ad = Soup.select(".PKhmud")
+    print(ad)
+    print(Html)
+
+
             
 
  
 
 
-<<<<<<< HEAD
-a = image('river')
+
+
+a = image('美女')
 
 
 
-=======
-for i in range(10): 
-    a = image('美女')
-    print(a)
-    i = i + 1
->>>>>>> 6385ec73ff5065d321f9ac6029a4bc644e8c4253
+
+
+
