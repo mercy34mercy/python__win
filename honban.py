@@ -23,7 +23,7 @@ def get_key(top_key):
     for i in range(1):
         # 10ランク取得
         pagenum = i * 10 + 1
-        load_url = "https://search.yahoo.co.jp/search?p=美女&ei=utf-8&b=" + \
+        load_url = "https://search.yahoo.co.jp/search?p="+top_key +"&ei=utf-8&b=" + \
             str(pagenum)
 
         # HTML取得
@@ -43,21 +43,21 @@ def get_key(top_key):
                 a = a.replace("</a", "")
 
                 result_title = a.strip('|')
-                syorii(result_title)
+                syorii(result_title,top_key)
                 # print(str(cnt) + ":" + result_title)
                 cnt = cnt + 1
 
         time.sleep(1)
 
 
-def syorii(text_data):
+def syorii(text_data,top_key):
     nlp = spacy.load('ja_ginza_electra')
     doc = nlp(text_data)
 
     for sent in doc.sents:
         for token in sent:
             if token.pos_ == 'NOUN':
-                get_image(token.orth_)
+                get_image(top_key +token.orth_)
 
 
 def get_image(key):
@@ -65,12 +65,23 @@ def get_image(key):
         "&sxsrf=AOaemvI6vp0YKj-fyH9-T3r370jZUHhZgg:1630890428328&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjCjpellOnyAhUGCYgKHUcEA_QQ_AUoAXoECAEQAw"
     html = requests.get(current_url)
     bs = BeautifulSoup(html.text, 'lxml')
-    images = bs.find_all('img', limit=3)
-    for image in images:
-        # print image source
-        print(image['src'])
+    images = bs.find_all('img', limit=4)
+    # for image in images:
+    #     # print image source
+    #     print(image['data-src'])
 
-if __name__=='__main__':
-    key_data = "美女"
-    get_image(key_data)
-    get_key(key_data)
+    
+    for image in images[1:3]:
+        try:
+            url = image.get("src")
+        except:
+            print("EOF")
+
+        print(url)
+
+
+
+
+key_data = "美女"
+get_image(key_data)
+get_key(key_data)
