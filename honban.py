@@ -51,7 +51,6 @@ def get_key(top_key):
         
 
         syorii(result_title[random.randint(0,len(result_title))], top_key)
-        time.sleep(1)
                 
 
 
@@ -66,6 +65,7 @@ def syorii(text_data, top_key):
             if token.pos_ == 'NOUN':
                 get_image(top_key + token.orth_)
                 break
+            #ここ直す
 
 
 def get_image(key):
@@ -78,15 +78,18 @@ def get_image(key):
     #     # print image source
     #     print(image['data-src'])
 
-    for index in random.randint(1,len(images)):
-
-        image = images[index]
+    url_list = []
+    for index in range(len(images)-1):
+        
+        image = images[index+1]
         try:
             url = image.get("src")
-            print(url)
-            break
+            url_list.append(url)
         except:
             print("EOF")
+    
+    print(url_list[random.randint(0,len(url_list)-1)])
+    exit()
 
 
 key_data = "美女"
