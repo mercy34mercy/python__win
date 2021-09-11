@@ -88,7 +88,7 @@ def get_image(key):
             print("EOF")
     
     print(url_list[random.randint(0,len(url_list)-1)])
-    exit()
+
 
 
 key_data = "美女"
