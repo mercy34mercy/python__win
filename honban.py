@@ -1,4 +1,3 @@
-from sample6 import image
 import requests
 from bs4 import BeautifulSoup
 from requests.api import get
@@ -50,7 +49,7 @@ def get_key(top_key):
 
         
 
-        syorii(result_title[random.randint(0,len(result_title))], top_key)
+        syorii(result_title[random.randint(0,len(result_title)-1)], top_key)
                 
 
 
