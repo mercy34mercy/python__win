@@ -72,7 +72,7 @@ def get_image(key):
         "&sxsrf=AOaemvI6vp0YKj-fyH9-T3r370jZUHhZgg:1630890428328&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjCjpellOnyAhUGCYgKHUcEA_QQ_AUoAXoECAEQAw"
     html = requests.get(current_url)
     bs = BeautifulSoup(html.text, 'lxml')
-    images = bs.find_all('a', limit=200)
+    images = bs.find_all('img', limit=30)
 
     # for image in images:
     #     # print image source
@@ -83,7 +83,7 @@ def get_image(key):
         
         image = images[index+1]
         try:
-            url = image.get("href")
+            url = image.get("src")
             url_list.append(url)
         except:
             print("EOF")
