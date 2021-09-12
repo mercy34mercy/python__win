@@ -49,7 +49,7 @@ def get_key(top_key):
 
         
 
-        syorii(result_title[random.randint(0,len(result_title)-1)], top_key)
+        syorii(result_title[random.randint(0,len(result_title))], top_key)
                 
 
 
@@ -72,7 +72,8 @@ def get_image(key):
         "&sxsrf=AOaemvI6vp0YKj-fyH9-T3r370jZUHhZgg:1630890428328&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjCjpellOnyAhUGCYgKHUcEA_QQ_AUoAXoECAEQAw"
     html = requests.get(current_url)
     bs = BeautifulSoup(html.text, 'lxml')
-    images = bs.find_all('img', limit=10)
+    images = bs.find_all('a', limit=200)
+
     # for image in images:
     #     # print image source
     #     print(image['data-src'])
@@ -82,13 +83,13 @@ def get_image(key):
         
         image = images[index+1]
         try:
-            url = image.get("src")
+            url = image.get("href")
             url_list.append(url)
         except:
             print("EOF")
     
     print(url_list[random.randint(0,len(url_list)-1)])
-
+    exit()
 
 
 key_data = "美女"
