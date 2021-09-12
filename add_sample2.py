@@ -6,7 +6,6 @@ import time
 import datetime
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementClickInterceptedException
-import chromedriver_binary
 
 tm_start = time.time()  # 処理時間計測用
 dt_now = datetime.datetime.now()  # 現在日時
@@ -31,7 +30,7 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--start-fullscreen')
 options.add_argument('--disable-plugins')
 options.add_argument('--disable-extensions')
-driver = webdriver.Chrome(DRIVER_PATH, options=options)
+driver = webdriver.Chrome()
 # タイムアウト設定
 driver.implicitly_wait(TIMEOUT)
  
